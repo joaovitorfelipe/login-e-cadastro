@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 import os
 import psycopg2
+from psycopg2 import errors
 
 load_dotenv()
 
@@ -99,16 +100,26 @@ def cadastro():
         conexao = conectar_banco()
         cursor = conexao.cursor()
 
-        cursor.execute(
-            "INSERT INTO usuarios (nome, email, senha) VALUES (%s, %s, %s)",
-            (nome, email, senha_hash)
-        )
+        try:
+            cursor.execute(
+                "INSERT INTO usuarios (nome, email, senha) VALUES (%s, %s, %s)",
+                (nome, email, senha_hash)
+            )
 
-        conexao.commit()
+            conexao.commit()
+
+        except errors.UniqueViolation:
+            conexao.rollback()
+
+            return render_template(
+                "cadastro.html",
+                erro="E-mail já cadastrado!",
+                nome=nome,
+                email=email
+            )
 
         cursor.close()
         conexao.close()
-        
 
         return "Cadastro realizado!"
 
