@@ -2,13 +2,26 @@ from flask import Flask, render_template, request, session, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 import os
+import psycopg2
 
 load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
-usuarios = []
+
+def conectar_banco():
+    return psycopg2.connect(
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT"),
+        database=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD")
+    )
+
+conexao = conectar_banco()
+print("Conectado ao PostgreSQL!")
+conexao.close()
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -19,11 +32,22 @@ def inicio():
         email = request.form["email"]
         senha = request.form["senha"]
 
-        for usuario in usuarios:
+        conexao = conectar_banco()
+        cursor = conexao.cursor()
 
-            if usuario["email"] == email and check_password_hash(usuario["senha"], senha):
-                session["usuario"] = email
-                return redirect(url_for("home"))
+        cursor.execute(
+            "SELECT id, nome, email, senha FROM usuarios WHERE email = %s",
+            (email,)
+        )
+
+        usuario = cursor.fetchone()
+
+        cursor.close()
+        conexao.close()
+
+        if usuario and check_password_hash(usuario[3], senha):
+            session["usuario"] = usuario[2]
+            return redirect(url_for("home"))
 
         return render_template("login.html", erro="E-mail ou senha incorretos")
 
@@ -71,23 +95,20 @@ def cadastro():
                 email=email
             )
 
-        for usuario in usuarios:
-
-            if usuario["email"] == email:
-                return render_template(
-                    "cadastro.html",
-                    erro="E-mail já cadastrado!"
-                )
-
         senha_hash = generate_password_hash(senha)
+        conexao = conectar_banco()
+        cursor = conexao.cursor()
 
-        usuarios.append({
-            "nome": nome,
-            "email": email,
-            "senha": senha_hash
-        })
+        cursor.execute(
+            "INSERT INTO usuarios (nome, email, senha) VALUES (%s, %s, %s)",
+            (nome, email, senha_hash)
+        )
 
-        print(usuarios)
+        conexao.commit()
+
+        cursor.close()
+        conexao.close()
+        
 
         return "Cadastro realizado!"
 
@@ -99,12 +120,24 @@ def home():
     if "usuario" not in session:
         return redirect(url_for("inicio"))
 
-    for usuario in usuarios:
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
 
-        if usuario["email"] == session["usuario"]:
-            nome = usuario["nome"]
+    cursor.execute(
+        "SELECT nome FROM usuarios WHERE email = %s",
+        (session["usuario"],)
+    )
 
-            return render_template("home.html", nome=nome)
+    usuario = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
+
+    if usuario:
+        nome = usuario[0]
+        return render_template("home.html", nome=nome)
+
+    return redirect(url_for("inicio"))
 
 @app.route("/logout")
 def logout():
