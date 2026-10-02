@@ -39,7 +39,7 @@ def cadastro():
         senha = request.form["senha"]
         confirmar_senha = request.form["confirmar_senha"]
 
-        if not nome.strip():
+        if not nome:
             return render_template(
                 "cadastro.html",
                 erro="Digite seu nome!",
