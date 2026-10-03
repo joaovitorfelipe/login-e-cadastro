@@ -1,0 +1,118 @@
+body.home-page {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    background: #f5f5f5;
+    color: #222;
+}
+
+/* HEADER */
+
+.home-page header {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 50px;
+
+    background: #111;
+    color: white;
+}
+
+.home-page header h2 {
+    margin: 0;
+}
+
+.home-page header a {
+    color: white;
+    text-decoration: none;
+
+    background: #e63946;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    transition: 0.2s;
+}
+
+.home-page header a:hover {
+    background: #c92f3b;
+}
+
+/* CONTEÚDO */
+
+.home-page main {
+    max-width: 1100px;
+
+    margin: 60px auto;
+
+    padding: 0 30px;
+}
+
+/* BOAS-VINDAS */
+
+.home-page .boas-vindas {
+    margin-bottom: 40px;
+}
+
+.home-page .boas-vindas h1 {
+    margin: 0 0 10px;
+
+    font-size: 36px;
+}
+
+.home-page .boas-vindas p {
+    margin: 0;
+
+    color: #666;
+
+    font-size: 18px;
+}
+
+/* CARDS */
+
+.home-page .cards {
+    display: flex;
+    gap: 25px;
+}
+
+.home-page .card {
+    width: 280px;
+
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    transition: 0.2s;
+}
+
+.home-page .card:hover {
+    transform: translateY(-5px);
+}
+
+.home-page .card h3 {
+    margin: 0 0 10px;
+}
+
+.home-page .card p {
+    margin: 0 0 20px;
+
+    color: #666;
+}
+
+.home-page .card a {
+    color: #111;
+
+    font-weight: bold;
+
+    text-decoration: none;
+}

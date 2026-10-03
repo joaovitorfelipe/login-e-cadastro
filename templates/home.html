@@ -3,15 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+
     <title>Home</title>
 </head>
 
-<body>
+<body class="home-page">
 
-    <h1>Olá, {{ nome }}</h1>
+    <header>
+        <h2>Meu Sistema</h2>
 
-    <p>Bem-vindo à página inicial.</p>
-    <a href="/logout">Sair</a>
+        <a href="/logout">Sair</a>
+    </header>
+
+    <main>
+
+        <section>
+            <h1>Olá, {{ nome }}! 👋</h1>
+
+            <p>Bem-vindo à sua página inicial.</p>
+        </section>
+
+        <section>
+
+            <div>
+                <h3>Meu Perfil</h3>
+                <p>Veja e edite suas informações.</p>
+                <a href="#">Acessar</a>
+            </div>
+
+            <div>
+                <h3>Configurações</h3>
+                <p>Gerencie as configurações da sua conta.</p>
+                <a href="#">Acessar</a>
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
 
