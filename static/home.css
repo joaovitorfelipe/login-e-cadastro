@@ -60,8 +60,9 @@ body.home-page {
 }
 
 .home-page header a:hover {
-    background: #292929;
-    border-color: #555;
+    background: #b91c1c;
+    border-color: #ef4444;
+    color: white;
 }
 
 
