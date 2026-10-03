@@ -1,118 +1,320 @@
+* {
+    box-sizing: border-box;
+}
+
 body.home-page {
     margin: 0;
     min-height: 100vh;
 
     font-family: Arial, sans-serif;
 
-    background: #f5f5f5;
-    color: #222;
+    background: #0b0b0b;
+    color: white;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 .home-page header {
-    height: 70px;
+    height: 75px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 50px;
+    padding: 0 55px;
 
     background: #111;
-    color: white;
+
+    border-bottom: 1px solid #252525;
+
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
 }
 
 .home-page header h2 {
     margin: 0;
+
+    font-size: 21px;
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
 }
 
 .home-page header a {
-    color: white;
-    text-decoration: none;
-
-    background: #e63946;
-
     padding: 10px 18px;
 
+    color: white;
+    background: #1d1d1d;
+
+    border: 1px solid #333;
     border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
 
     transition: 0.2s;
 }
 
 .home-page header a:hover {
-    background: #c92f3b;
+    background: #292929;
+    border-color: #555;
 }
 
-/* CONTEÚDO */
+
+/* =========================
+   CONTEÚDO
+========================= */
 
 .home-page main {
-    max-width: 1100px;
+    max-width: 1150px;
 
-    margin: 60px auto;
+    margin: 0 auto;
 
-    padding: 0 30px;
+    padding: 65px 35px;
 }
 
-/* BOAS-VINDAS */
+
+/* =========================
+   BOAS-VINDAS
+========================= */
 
 .home-page .boas-vindas {
-    margin-bottom: 40px;
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 45px;
+
+    margin-bottom: 45px;
+
+    background: linear-gradient(135deg, #181818, #101010);
+
+    border: 1px solid #292929;
+    border-radius: 20px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+.home-page .boas-vindas::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -70px;
+    top: -100px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    border-radius: 50%;
 }
 
 .home-page .boas-vindas h1 {
-    margin: 0 0 10px;
+    position: relative;
 
-    font-size: 36px;
+    margin: 0 0 12px;
+
+    font-size: 42px;
+    font-weight: 700;
+
+    z-index: 1;
 }
 
 .home-page .boas-vindas p {
+    position: relative;
+
     margin: 0;
 
-    color: #666;
+    color: #999;
 
-    font-size: 18px;
+    font-size: 17px;
+
+    z-index: 1;
 }
 
-/* CARDS */
+/* STATUS DA CONTA */
+
+.home-page .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 22px;
+
+    color: #aaa;
+
+    font-size: 14px;
+}
+
+.home-page .status-dot {
+    width: 8px;
+    height: 8px;
+
+    background: #32d74b;
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 8px rgba(50, 215, 75, 0.6);
+}
+
+
+/* AVATAR */
+
+.home-page .welcome-content {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================
+   MEU ESPAÇO
+========================= */
+
+.home-page .meu-espaco h2 {
+    margin: 0 0 20px;
+
+    font-size: 22px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   CARDS
+========================= */
 
 .home-page .cards {
-    display: flex;
-    gap: 25px;
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 22px;
 }
 
 .home-page .card {
-    width: 280px;
+    min-height: 220px;
 
-    padding: 25px;
+    padding: 30px;
 
-    background: white;
+    background: #141414;
 
-    border-radius: 12px;
+    border: 1px solid #292929;
+    border-radius: 16px;
 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+
+    transition: 0.25s;
+}
+
+.home-page .card:hover {
+    transform: translateY(-6px);
+
+    background: #181818;
+
+    border-color: #444;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================
+   ÍCONE DOS CARDS
+========================= */
+
+.home-page .card-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 22px;
+
+    background: #202020;
+
+    border: 1px solid #333;
+    border-radius: 10px;
+
+    font-size: 20px;
+}
+
+
+/* =========================
+   TEXTO DOS CARDS
+========================= */
+
+.home-page .card h3 {
+    margin: 0 0 10px;
+
+    font-size: 20px;
+}
+
+.home-page .card p {
+    margin: 0 0 25px;
+
+    color: #888;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   LINK DOS CARDS
+========================= */
+
+.home-page .card a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.home-page .card a span {
+    margin-left: 5px;
 
     transition: 0.2s;
 }
 
-.home-page .card:hover {
-    transform: translateY(-5px);
+.home-page .card a:hover {
+    color: #bbb;
 }
 
-.home-page .card h3 {
-    margin: 0 0 10px;
+.home-page .card a:hover span {
+    margin-left: 10px;
 }
 
-.home-page .card p {
-    margin: 0 0 20px;
 
-    color: #666;
-}
+/* =========================
+   RESPONSIVIDADE
+========================= */
 
-.home-page .card a {
-    color: #111;
+@media (max-width: 700px) {
 
-    font-weight: bold;
+    .home-page header {
+        padding: 0 25px;
+    }
 
-    text-decoration: none;
+    .home-page main {
+        padding: 40px 20px;
+    }
+
+    .home-page .boas-vindas {
+        padding: 30px;
+    }
+
+    .home-page .boas-vindas h1 {
+        font-size: 30px;
+    }
+
+    .home-page .cards {
+        grid-template-columns: 1fr;
+    }
 }
