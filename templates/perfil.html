@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meu Perfil</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='perfil.css') }}">
+</head>
+
+<body class="home-page">
+
+    <header>
+
+        <h2>Meu Sistema</h2>
+
+        <a href="/logout">Sair</a>
+
+    </header>
+
+    <main>
+
+        <section class="boas-vindas">
+
+            <h1>Meu Perfil</h1>
+
+            <p>Confira suas informações pessoais.</p>
+
+        </section>
+
+
+        <section class="perfil">
+
+            <div class="perfil-info">
+
+                <h2>Informações da conta</h2>
+
+                <div class="info-item">
+                    <span>Nome</span>
+                    <strong>{{ nome }}</strong>
+                </div>
+
+                <div class="info-item">
+                    <span>E-mail</span>
+                    <strong>{{ email }}</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

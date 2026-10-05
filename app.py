@@ -150,6 +150,37 @@ def home():
 
     return redirect(url_for("inicio"))
 
+@app.route("/perfil")
+def perfil():
+
+    if "usuario" not in session:
+        return redirect(url_for("inicio"))
+
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        "SELECT nome, email FROM usuarios WHERE email = %s",
+        (session["usuario"],)
+    )
+
+    usuario = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
+
+    if usuario:
+        nome = usuario[0]
+        email = usuario[1]
+
+        return render_template(
+            "perfil.html",
+            nome=nome,
+            email=email
+        )
+
+    return redirect(url_for("inicio"))
+
 @app.route("/logout")
 def logout():
 
