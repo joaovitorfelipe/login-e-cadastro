@@ -160,7 +160,7 @@ def perfil():
     cursor = conexao.cursor()
 
     cursor.execute(
-        "SELECT nome, email FROM usuarios WHERE email = %s",
+        "SELECT nome, email, data_criacao FROM usuarios WHERE email = %s",
         (session["usuario"],)
     )
 
@@ -172,11 +172,13 @@ def perfil():
     if usuario:
         nome = usuario[0]
         email = usuario[1]
+        data_criacao = usuario[2]
 
         return render_template(
             "perfil.html",
             nome=nome,
-            email=email
+            email=email,
+            data_criacao=data_criacao
         )
 
     return redirect(url_for("inicio"))

@@ -104,28 +104,23 @@ main {
 ========================= */
 
 .perfil {
-    background: #141414;
-
-    border: 1px solid #292929;
+    background: #151515;
+    border: 1px solid #2d2d2d;
     border-radius: 18px;
-
     overflow: hidden;
-
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
-
 
 /* =========================
    CABEÇALHO DO PERFIL
 ========================= */
 
 .perfil-info {
-    padding: 30px;
+    padding: 34px;
 }
 
 .perfil-info h2 {
-    margin: 0 0 25px;
-
+    margin: 0 0 30px;
     font-size: 20px;
 }
 
@@ -138,9 +133,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 20px 0;
-
+    padding: 22px 0;
     border-bottom: 1px solid #292929;
 }
 
@@ -149,16 +142,16 @@ main {
 }
 
 .info-item span {
-    color: #777;
-
-    font-size: 14px;
+    color: #888;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .info-item strong {
-    color: #eee;
-
+    color: #f1f1f1;
     font-size: 15px;
-
     font-weight: 500;
 }
 
