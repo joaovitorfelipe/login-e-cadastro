@@ -1,0 +1,197 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    background: #0b0b0b;
+    color: white;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 55px;
+
+    background: #111;
+
+    border-bottom: 1px solid #252525;
+}
+
+header h2 {
+    margin: 0;
+
+    font-size: 21px;
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
+}
+
+header a {
+    padding: 10px 18px;
+
+    color: white;
+    background: #1d1d1d;
+
+    border: 1px solid #333;
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+header a:hover {
+    background: #b91c1c;
+    border-color: #ef4444;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+main {
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 65px 35px;
+}
+
+
+/* =========================
+   TÍTULO
+========================= */
+
+.titulo {
+    margin-bottom: 35px;
+}
+
+.titulo h1 {
+    margin: 0 0 10px;
+
+    font-size: 36px;
+}
+
+.titulo p {
+    margin: 0;
+
+    color: #888;
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   CONFIGURAÇÕES
+========================= */
+
+.configuracoes {
+    overflow: hidden;
+
+    background: #141414;
+
+    border: 1px solid #292929;
+    border-radius: 18px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =========================
+   ITEM
+========================= */
+
+.config-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 25px 30px;
+
+    border-bottom: 1px solid #292929;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.config-item:last-child {
+    border-bottom: none;
+}
+
+.config-item:hover {
+    background: #181818;
+}
+
+.config-item h3 {
+    margin: 0 0 7px;
+
+    font-size: 17px;
+}
+
+.config-item p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.config-item > span {
+    color: #777;
+
+    font-size: 22px;
+
+    transition: 0.2s;
+}
+
+.config-item:hover > span {
+    color: white;
+
+    transform: translateX(5px);
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 0 25px;
+    }
+
+    main {
+        padding: 40px 20px;
+    }
+
+    .titulo h1 {
+        font-size: 30px;
+    }
+
+    .config-item {
+        padding: 22px;
+    }
+
+}

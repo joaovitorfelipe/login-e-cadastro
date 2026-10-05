@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Configurações</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='configuracoes.css') }}">
+</head>
+
+<body>
+
+    <header>
+
+        <h2>Meu Sistema</h2>
+
+        <a href="/logout">Sair</a>
+
+    </header>
+
+
+    <main>
+
+        <section class="titulo">
+
+            <h1>Configurações</h1>
+
+            <p>Gerencie as configurações da sua conta.</p>
+
+        </section>
+
+
+        <section class="configuracoes">
+
+            <div class="config-item">
+
+                <div>
+                    <h3>Conta</h3>
+
+                    <p>
+                        Gerencie as informações e preferências da sua conta.
+                    </p>
+                </div>
+
+                <span>→</span>
+
+            </div>
+
+
+            <div class="config-item">
+
+                <div>
+                    <h3>Segurança</h3>
+
+                    <p>
+                        Altere sua senha e mantenha sua conta protegida.
+                    </p>
+                </div>
+
+                <span>→</span>
+
+            </div>
+
+
+            <div class="config-item">
+
+                <div>
+                    <h3>Notificações</h3>
+
+                    <p>
+                        Controle como você deseja receber notificações.
+                    </p>
+                </div>
+
+                <span>→</span>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

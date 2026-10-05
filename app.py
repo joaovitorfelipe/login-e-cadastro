@@ -181,6 +181,14 @@ def perfil():
 
     return redirect(url_for("inicio"))
 
+@app.route("/configuracoes")
+def configuracoes():
+
+    if "usuario" not in session:
+        return redirect(url_for("inicio"))
+
+    return render_template("configuracoes.html")
+
 @app.route("/logout")
 def logout():
 
