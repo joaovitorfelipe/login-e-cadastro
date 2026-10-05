@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Segurança</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='seguranca.css') }}">
+</head>
+
+<body>
+
+    <header>
+
+        <h2>Meu Sistema</h2>
+
+        <a href="/logout">Sair</a>
+
+    </header>
+
+
+    <main>
+
+        <section class="titulo">
+
+            <h1>Segurança</h1>
+
+            <p>Gerencie a segurança da sua conta.</p>
+
+        </section>
+
+
+        <section class="seguranca">
+
+            <div class="seguranca-header">
+
+                <h2>Alterar senha</h2>
+
+                <p>
+                    Escolha uma nova senha para proteger sua conta.
+                </p>
+
+            </div>
+
+
+            <form method="POST">
+
+                <label for="senha_atual">
+                    Senha atual
+                </label>
+
+                <input
+                    type="password"
+                    id="senha_atual"
+                    name="senha_atual"
+                    required
+                >
+
+
+                <label for="nova_senha">
+                    Nova senha
+                </label>
+
+                <input
+                    type="password"
+                    id="nova_senha"
+                    name="nova_senha"
+                    required
+                >
+
+
+                <label for="confirmar_senha">
+                    Confirmar nova senha
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmar_senha"
+                    name="confirmar_senha"
+                    required
+                >
+
+
+                {% if erro %}
+                    <p class="erro">{{ erro }}</p>
+                {% endif %}
+
+
+                {% if sucesso %}
+                    <p class="sucesso">{{ sucesso }}</p>
+                {% endif %}
+
+
+                <button type="submit">
+                    Alterar senha
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

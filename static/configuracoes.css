@@ -195,3 +195,8 @@ main {
     }
 
 }
+
+.config-item {
+    color: white;
+    text-decoration: none;
+}

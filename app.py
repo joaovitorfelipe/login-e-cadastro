@@ -189,6 +189,139 @@ def configuracoes():
 
     return render_template("configuracoes.html")
 
+@app.route("/seguranca", methods=["GET", "POST"])
+def seguranca():
+
+    if "usuario" not in session:
+        return redirect(url_for("inicio"))
+
+    if request.method == "POST":
+
+        senha_atual = request.form["senha_atual"]
+        nova_senha = request.form["nova_senha"]
+        confirmar_senha = request.form["confirmar_senha"]
+
+        conexao = conectar_banco()
+        cursor = conexao.cursor()
+
+        cursor.execute(
+            "SELECT senha FROM usuarios WHERE email = %s",
+            (session["usuario"],)
+        )
+
+        usuario = cursor.fetchone()
+
+        if not usuario or not check_password_hash(usuario[0], senha_atual):
+            cursor.close()
+            conexao.close()
+
+            return render_template(
+                "seguranca.html",
+                erro="A senha atual está incorreta."
+            )
+
+        if len(nova_senha) < 8:
+            cursor.close()
+            conexao.close()
+
+            return render_template(
+                "seguranca.html",
+                erro="A nova senha deve ter no mínimo 8 caracteres."
+            )
+
+        if nova_senha != confirmar_senha:
+            cursor.close()
+            conexao.close()
+
+            return render_template(
+                "seguranca.html",
+                erro="As senhas não coincidem."
+            )
+
+        nova_senha_hash = generate_password_hash(nova_senha)
+
+        cursor.execute(
+            "UPDATE usuarios SET senha = %s WHERE email = %s",
+            (nova_senha_hash, session["usuario"])
+        )
+
+        conexao.commit()
+
+        cursor.close()
+        conexao.close()
+
+        return render_template(
+            "seguranca.html",
+            sucesso="Senha alterada com sucesso!"
+        )
+
+    return render_template("seguranca.html")
+
+@app.route("/conta", methods=["GET", "POST"])
+def conta():
+
+    if "usuario" not in session:
+        return redirect(url_for("inicio"))
+
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        "SELECT nome, email FROM usuarios WHERE email = %s",
+        (session["usuario"],)
+    )
+
+    usuario = cursor.fetchone()
+
+    if not usuario:
+        cursor.close()
+        conexao.close()
+        return redirect(url_for("inicio"))
+
+    nome = usuario[0]
+    email = usuario[1]
+
+    if request.method == "POST":
+
+        novo_nome = request.form["novo_nome"].strip()
+
+        if not novo_nome:
+            cursor.close()
+            conexao.close()
+
+            return render_template(
+                "conta.html",
+                nome=nome,
+                email=email,
+                erro="Digite um nome."
+            )
+
+        cursor.execute(
+            "UPDATE usuarios SET nome = %s WHERE email = %s",
+            (novo_nome, email)
+        )
+
+        conexao.commit()
+
+        cursor.close()
+        conexao.close()
+
+        return render_template(
+            "conta.html",
+            nome=novo_nome,
+            email=email,
+            sucesso="Nome alterado com sucesso!"
+        )
+
+    cursor.close()
+    conexao.close()
+
+    return render_template(
+        "conta.html",
+        nome=nome,
+        email=email
+    )
+
 @app.route("/logout")
 def logout():
 
