@@ -141,12 +141,32 @@ def home():
 
     usuario = cursor.fetchone()
 
+    cursor.execute(
+        """
+        SELECT descricao, data_atividade, tipo
+        FROM atividades
+        WHERE usuario_id = (
+            SELECT id FROM usuarios WHERE email = %s
+        )
+        ORDER BY data_atividade DESC
+        LIMIT 5
+        """,
+        (session["usuario"],)
+    )
+
+    atividades = cursor.fetchall()
+
     cursor.close()
     conexao.close()
 
     if usuario:
         nome = usuario[0]
-        return render_template("home.html", nome=nome)
+
+        return render_template(
+            "home.html",
+            nome=nome,
+            atividades=atividades
+        )
 
     return redirect(url_for("inicio"))
 
@@ -247,6 +267,16 @@ def seguranca():
             (nova_senha_hash, session["usuario"])
         )
 
+        cursor.execute(
+            """
+            INSERT INTO atividades (usuario_id, descricao, tipo)
+            SELECT id, %s, %s
+            FROM usuarios
+            WHERE email = %s
+            """,
+            ("Senha alterada", "senha", session["usuario"])
+        )
+
         conexao.commit()
 
         cursor.close()
@@ -259,7 +289,7 @@ def seguranca():
 
     return render_template("seguranca.html")
 
-@app.route("/notificacoes")
+@app.route("/notificacoes", methods=["GET", "POST"])
 def notificacoes():
 
     if "usuario" not in session:
@@ -275,17 +305,60 @@ def notificacoes():
 
     usuario = cursor.fetchone()
 
-    cursor.close()
-    conexao.close()
-
     if not usuario:
+        cursor.close()
+        conexao.close()
         return redirect(url_for("inicio"))
 
     usuario_id = usuario[0]
+    sucesso = None
+
+    if request.method == "POST":
+
+        sistema = "sistema" in request.form
+        email = "email" in request.form
+        novidades = "novidades" in request.form
+
+        cursor.execute(
+            """
+            UPDATE notificacoes
+            SET sistema = %s,
+                email = %s,
+                novidades = %s
+            WHERE usuario_id = %s
+            """,
+            (sistema, email, novidades, usuario_id)
+        )
+
+        cursor.execute(
+            """
+            INSERT INTO atividades (usuario_id, descricao, tipo)
+            VALUES (%s, %s, %s)
+            """,
+            (usuario_id, "Preferências de notificações alteradas", "notificacoes")
+        )
+
+
+        conexao.commit()
+        sucesso = "Preferências salvas com sucesso!"
+
+    cursor.execute(
+        "SELECT sistema, email, novidades FROM notificacoes WHERE usuario_id = %s",
+        (usuario_id,)
+    )
+
+    preferencias = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
 
     return render_template(
         "notificacoes.html",
-        usuario_id=usuario_id
+        usuario_id=usuario_id,
+        sistema=preferencias[0],
+        email=preferencias[1],
+        novidades=preferencias[2],
+        sucesso=sucesso if request.method == "POST" else None
     )
 
 @app.route("/conta", methods=["GET", "POST"])
@@ -330,6 +403,16 @@ def conta():
         cursor.execute(
             "UPDATE usuarios SET nome = %s WHERE email = %s",
             (novo_nome, email)
+        )
+
+        cursor.execute(
+            """
+            INSERT INTO atividades (usuario_id, descricao, tipo)
+            SELECT id, %s, %s
+            FROM usuarios
+            WHERE email = %s
+            """,
+            ("Nome alterado", "nome", email)
         )
 
         conexao.commit()

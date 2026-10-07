@@ -83,6 +83,45 @@
 
         </section>
 
+        <section class="atividades">
+
+            <h2>Atividade recente</h2>
+
+            <div class="atividades-card">
+
+                {% for atividade in atividades %}
+
+                <div class="atividade">
+
+                    <div class="atividade-icone">
+
+                        {% if atividade[2] == "nome" %}
+                        👤
+                        {% elif atividade[2] == "senha" %}
+                        🔒
+                        {% elif atividade[2] == "notificacoes" %}
+                        ⚙️
+                        {% endif %}
+
+                    </div>
+
+                    <div class="atividade-info">
+
+                        <h3>{{ atividade[0] }}</h3>
+
+                        <p>
+                            {{ atividade[1].strftime('%d/%m/%Y às %H:%M') }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
     </main>
 
 </body>

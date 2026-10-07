@@ -33,64 +33,77 @@
 
         <section class="notificacoes">
 
-            <div class="notificacao-item">
+            <form method="POST">
 
-                <div>
+                <div class="notificacao-item">
 
-                    <h3>Notificações do sistema</h3>
+                    <div>
 
-                    <p>
-                        Receba avisos importantes sobre sua conta.
-                    </p>
+                        <h3>Notificações do sistema</h3>
 
-                </div>
+                        <p>
+                            Receba avisos importantes sobre sua conta.
+                        </p>
 
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label>
+                    </div>
 
-            </div>
-
-
-            <div class="notificacao-item">
-
-                <div>
-
-                    <h3>Notificações por e-mail</h3>
-
-                    <p>
-                        Receba informações e atualizações por e-mail.
-                    </p>
+                    <label class="switch">
+                        <input type="checkbox" name="sistema" {% if sistema %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
 
                 </div>
 
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label>
 
-            </div>
+                <div class="notificacao-item">
 
+                    <div>
 
-            <div class="notificacao-item">
+                        <h3>Notificações por e-mail</h3>
 
-                <div>
+                        <p>
+                            Receba informações e atualizações por e-mail.
+                        </p>
 
-                    <h3>Avisos e novidades</h3>
+                    </div>
 
-                    <p>
-                        Receba novidades e informações sobre o sistema.
-                    </p>
+                    <label class="switch">
+                        <input type="checkbox" name="email" {% if email %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
 
                 </div>
 
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label>
 
-            </div>
+                <div class="notificacao-item">
+
+                    <div>
+
+                        <h3>Avisos e novidades</h3>
+
+                        <p>
+                            Receba novidades e informações sobre o sistema.
+                        </p>
+
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" name="novidades" {% if novidades %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
+
+                </div>
+
+                {% if sucesso %}
+                <p class="sucesso">{{ sucesso }}</p>
+                {% endif %}
+
+
+                <button type="submit">
+                    Salvar alterações
+                </button>
+
+            </form>
 
         </section>
 
