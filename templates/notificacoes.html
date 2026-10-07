@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notificações</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='notificacoes.css') }}">
+</head>
+
+<body>
+
+    <header>
+
+        <h2>Meu Sistema</h2>
+
+        <a href="/logout">Sair</a>
+
+    </header>
+
+    <main>
+
+        <section class="titulo">
+
+            <h1>Notificações</h1>
+
+            <p>Controle quais notificações você deseja receber.</p>
+
+        </section>
+
+        <section class="notificacoes">
+
+            <div class="notificacao-item">
+
+                <div>
+
+                    <h3>Notificações do sistema</h3>
+
+                    <p>
+                        Receba avisos importantes sobre sua conta.
+                    </p>
+
+                </div>
+
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+
+            </div>
+
+
+            <div class="notificacao-item">
+
+                <div>
+
+                    <h3>Notificações por e-mail</h3>
+
+                    <p>
+                        Receba informações e atualizações por e-mail.
+                    </p>
+
+                </div>
+
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+
+            </div>
+
+
+            <div class="notificacao-item">
+
+                <div>
+
+                    <h3>Avisos e novidades</h3>
+
+                    <p>
+                        Receba novidades e informações sobre o sistema.
+                    </p>
+
+                </div>
+
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

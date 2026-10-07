@@ -259,6 +259,35 @@ def seguranca():
 
     return render_template("seguranca.html")
 
+@app.route("/notificacoes")
+def notificacoes():
+
+    if "usuario" not in session:
+        return redirect(url_for("inicio"))
+
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        "SELECT id FROM usuarios WHERE email = %s",
+        (session["usuario"],)
+    )
+
+    usuario = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
+
+    if not usuario:
+        return redirect(url_for("inicio"))
+
+    usuario_id = usuario[0]
+
+    return render_template(
+        "notificacoes.html",
+        usuario_id=usuario_id
+    )
+
 @app.route("/conta", methods=["GET", "POST"])
 def conta():
 
