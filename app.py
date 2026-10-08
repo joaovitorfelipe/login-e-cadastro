@@ -24,7 +24,6 @@ conexao = conectar_banco()
 print("Conectado ao PostgreSQL!")
 conexao.close()
 
-
 @app.route("/", methods=["GET", "POST"])
 def inicio():
 
@@ -43,14 +42,32 @@ def inicio():
 
         usuario = cursor.fetchone()
 
+        if usuario and check_password_hash(usuario[3], senha):
+
+            session["usuario"] = usuario[2]
+
+            cursor.execute(
+                """
+                INSERT INTO atividades (usuario_id, descricao, tipo)
+                VALUES (%s, %s, %s)
+                """,
+                (usuario[0], "Login realizado", "login")
+            )
+
+            conexao.commit()
+
+            cursor.close()
+            conexao.close()
+
+            return redirect(url_for("home"))
+
         cursor.close()
         conexao.close()
 
-        if usuario and check_password_hash(usuario[3], senha):
-            session["usuario"] = usuario[2]
-            return redirect(url_for("home"))
-
-        return render_template("login.html", erro="E-mail ou senha incorretos")
+        return render_template(
+            "login.html",
+            erro="E-mail ou senha incorretos"
+        )
 
     return render_template("login.html")
 
@@ -439,11 +456,30 @@ def conta():
 @app.route("/logout")
 def logout():
 
-    session.pop("usuario", None)
+    if "usuario" not in session:
+        return redirect(url_for("inicio"))
+
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO atividades (usuario_id, descricao, tipo)
+        SELECT id, %s, %s
+        FROM usuarios
+        WHERE email = %s
+        """,
+        ("Logout realizado", "logout", session["usuario"])
+    )
+
+    conexao.commit()
+
+    cursor.close()
+    conexao.close()
+
+    session.clear()
 
     return redirect(url_for("inicio"))
 
-
 if __name__ == "__main__":
     app.run(debug=True)
-
