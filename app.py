@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
+from flask_wtf.csrf import CSRFProtect
 import os
 import psycopg2
 from psycopg2 import errors
@@ -10,6 +11,13 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax",
+    SESSION_COOKIE_SECURE=False
+)
+
+csrf = CSRFProtect(app)
 
 def conectar_banco():
     return psycopg2.connect(
