@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -5,240 +6,37 @@
 body {
     margin: 0;
     min-height: 100vh;
-
     font-family: Arial, sans-serif;
-
     background: #0b0b0b;
-    color: white;
+    color: #fff;
 }
 
-
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header {
     height: 75px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 0 55px;
-
     background: #111;
-
     border-bottom: 1px solid #252525;
 }
 
 header h2 {
     margin: 0;
-
     font-size: 21px;
     font-weight: 600;
-
     letter-spacing: 0.5px;
 }
 
-header a {
+header form {
+    margin: 0;
+}
+
+.botao-sair {
     padding: 10px 18px;
-
-    color: white;
-    background: #1d1d1d;
-
-    border: 1px solid #333;
-    border-radius: 8px;
-
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    transition: 0.2s;
-}
-
-header a:hover {
-    background: #b91c1c;
-    border-color: #ef4444;
-}
-
-
-/* =========================
-   CONTEÚDO
-========================= */
-
-main {
-    max-width: 900px;
-
-    margin: 0 auto;
-
-    padding: 65px 35px;
-}
-
-
-/* =========================
-   TÍTULO
-========================= */
-
-.titulo {
-    margin-bottom: 35px;
-}
-
-.titulo h1 {
-    margin: 0 0 10px;
-
-    font-size: 36px;
-}
-
-.titulo p {
-    margin: 0;
-
-    color: #888;
-
-    font-size: 16px;
-}
-
-
-/* =========================
-   CONFIGURAÇÕES
-========================= */
-
-.configuracoes {
-    overflow: hidden;
-
-    background: #141414;
-
-    border: 1px solid #292929;
-    border-radius: 18px;
-
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
-}
-
-
-/* =========================
-   ITEM
-========================= */
-
-.config-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 25px 30px;
-
-    border-bottom: 1px solid #292929;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-.config-item:last-child {
-    border-bottom: none;
-}
-
-.config-item:hover {
-    background: #181818;
-}
-
-.config-item h3 {
-    margin: 0 0 7px;
-
-    font-size: 17px;
-}
-
-.config-item p {
-    margin: 0;
-
-    color: #777;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-}
-
-.config-item > span {
-    color: #777;
-
-    font-size: 22px;
-
-    transition: 0.2s;
-}
-
-.config-item:hover > span {
-    color: white;
-
-    transform: translateX(5px);
-}
-
-
-/* =========================
-   RESPONSIVIDADE
-========================= */
-
-@media (max-width: 700px) {
-
-    header {
-        padding: 0 25px;
-    }
-
-    main {
-        padding: 40px 20px;
-    }
-
-    .titulo h1 {
-        font-size: 30px;
-    }
-
-    .config-item {
-        padding: 22px;
-    }
-
-}
-
-.config-item {
-    color: white;
-    text-decoration: none;
-}
-
-.voltar {
-    display: inline-block;
-    margin-bottom: 25px;
-    color: #888;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.2s;
-}
-
-.voltar:hover {
-    color: white;
-}
-
-
-/* ALINHAMENTO DO BOTÃO SAIR */
-
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-header .form-sair {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-header .botao-sair {
-    display: block;
-    align-self: center;
-    width: auto;
-    padding: 10px 18px;
-    margin: 0;
-    color: white;
+    color: #fff;
     background: #1d1d1d;
     border: 1px solid #333;
     border-radius: 8px;
@@ -246,28 +44,193 @@ header .botao-sair {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
+    transition: background 0.2s, border-color 0.2s;
 }
 
-header .botao-sair:hover {
+.botao-sair:hover {
     background: #b91c1c;
     border-color: #ef4444;
-    color: white;
 }
 
+.botao-sair:focus-visible,
+.config-item:focus-visible,
+.voltar:focus-visible {
+    outline: 2px solid #86efac;
+    outline-offset: 4px;
+}
+
+/* CONTEÚDO */
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 35px;
+}
+
+/* VOLTAR */
+
+.voltar {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.voltar:hover {
+    color: #86efac;
+}
+
+/* TÍTULO */
+
+.titulo {
+    margin-bottom: 32px;
+}
+
+.titulo h1 {
+    margin: 0 0 10px;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+}
+
+.titulo p {
+    margin: 0;
+    color: #888;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* LISTA DE CONFIGURAÇÕES */
+
+.configuracoes {
+    overflow: hidden;
+    background: #121212;
+    border: 1px solid #292929;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* CARDS */
+
+.config-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 25px 28px;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #292929;
+    transition: background 0.2s, padding 0.2s;
+}
+
+.config-item:last-child {
+    border-bottom: none;
+}
+
+.config-item:hover {
+    background: #191919;
+}
+
+.config-item h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.config-item p {
+    margin: 0;
+    color: #858585;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.config-item > span {
+    flex-shrink: 0;
+    color: #666;
+    font-size: 23px;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.config-item:hover > span {
+    color: #86efac;
+    transform: translateX(4px);
+}
+
+.config-item:hover h3 {
+    color: #86efac;
+}
+
+/* EXCLUIR CONTA */
+
 .excluir-item h3 {
-    color: #ff3333;
+    color: #ff5c5c;
 }
 
 .excluir-item p {
-    color: #ff7777;
+    color: #a87575;
 }
 
 .excluir-item:hover {
-    border-color: #ff3333;
-    background: #260b0b;
+    background: #200f0f;
 }
 
-.excluir-item:hover h3 {
-    color: #ff4d4d;
+.excluir-item:hover h3,
+.excluir-item:hover > span {
+    color: #ff7070;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 700px) {
+    header {
+        height: 68px;
+        padding: 0 20px;
+    }
+
+    header h2 {
+        font-size: 19px;
+    }
+
+    main {
+        padding: 38px 20px;
+    }
+
+    .titulo {
+        margin-bottom: 26px;
+    }
+
+    .titulo h1 {
+        font-size: 30px;
+    }
+
+    .config-item {
+        padding: 22px 20px;
+        gap: 14px;
+    }
+
+    .config-item h3 {
+        font-size: 15px;
+    }
+
+    .config-item p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 380px) {
+    header {
+        padding: 0 15px;
+    }
+
+    main {
+        padding: 30px 15px;
+    }
+
+    .config-item {
+        padding: 20px 15px;
+    }
 }
