@@ -412,3 +412,28 @@ body.home-page {
     color: #777;
     font-size: 13px;
 }
+
+.home-page header .botao-sair {
+    padding: 10px 18px;
+
+    color: white;
+    background: #1d1d1d;
+
+    border: 1px solid #333;
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.home-page header .botao-sair:hover {
+    background: #b91c1c;
+    border-color: #ef4444;
+    color: white;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teste de e-mail</title>
+</head>
+
+<body>
+    <h1>Testar envio de e-mail</h1>
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label for="email">E-mail para receber o teste:</label>
+        <input type="email" id="email" name="email" required>
+
+        <button type="submit">Enviar teste</button>
+    </form>
+</body>
+
+</html>

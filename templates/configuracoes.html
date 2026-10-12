@@ -16,15 +16,17 @@
 
         <h2>Meu Sistema</h2>
 
-        <a href="/logout">Sair</a>
+        <form action="/logout" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="botao-sair">Sair</button>
+        </form>
 
     </header>
-
 
     <main>
 
         <a href="/home" class="voltar">← Voltar</a>
-        
+
         <section class="titulo">
 
             <h1>Configurações</h1>
@@ -33,53 +35,58 @@
 
         </section>
 
-
         <section class="configuracoes">
 
             <a href="/conta" class="config-item">
 
                 <div>
-
                     <h3>Conta</h3>
 
                     <p>
                         Gerencie as informações e preferências da sua conta.
                     </p>
-
                 </div>
 
                 <span>→</span>
 
             </a>
 
-
             <a href="/seguranca" class="config-item">
 
                 <div>
-
                     <h3>Segurança</h3>
 
                     <p>
                         Altere sua senha e mantenha sua conta protegida.
                     </p>
-
                 </div>
 
                 <span>→</span>
 
             </a>
 
-
             <a href="/notificacoes" class="config-item">
 
                 <div>
-
                     <h3>Notificações</h3>
 
                     <p>
                         Controle como você deseja receber notificações.
                     </p>
+                </div>
 
+                <span>→</span>
+
+            </a>
+
+            <a href="{{ url_for('excluir_conta') }}" class="config-item excluir-item">
+
+                <div>
+                    <h3>Excluir conta</h3>
+
+                    <p>
+                        Exclua permanentemente sua conta e os dados vinculados.
+                    </p>
                 </div>
 
                 <span>→</span>

@@ -213,3 +213,61 @@ main {
 .voltar:hover {
     color: white;
 }
+
+
+/* ALINHAMENTO DO BOTÃO SAIR */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .form-sair {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+header .botao-sair {
+    display: block;
+    align-self: center;
+    width: auto;
+    padding: 10px 18px;
+    margin: 0;
+    color: white;
+    background: #1d1d1d;
+    border: 1px solid #333;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+header .botao-sair:hover {
+    background: #b91c1c;
+    border-color: #ef4444;
+    color: white;
+}
+
+.excluir-item h3 {
+    color: #ff3333;
+}
+
+.excluir-item p {
+    color: #ff7777;
+}
+
+.excluir-item:hover {
+    border-color: #ff3333;
+    background: #260b0b;
+}
+
+.excluir-item:hover h3 {
+    color: #ff4d4d;
+}

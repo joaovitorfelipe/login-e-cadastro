@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir senha</title>
+</head>
+
+<body>
+    <h1>Crie uma nova senha</h1>
+    <p>Digite sua nova senha abaixo.</p>
+
+    {% if erro %}
+    <p style="color: red;">{{ erro }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label for="senha">Nova senha:</label>
+        <input type="password" id="senha" name="senha" minlength="8" required>
+
+        <br><br>
+
+        <label for="confirmar_senha">Confirme a nova senha:</label>
+        <input type="password" id="confirmar_senha" name="confirmar_senha" minlength="8" required>
+
+        <br><br>
+
+        <button type="submit">Redefinir senha</button>
+    </form>
+
+    <p><a href="{{ url_for('inicio') }}">Voltar para o login</a></p>
+</body>
+
+</html>

@@ -16,7 +16,10 @@
 
         <h2>Meu Sistema</h2>
 
-        <a href="/logout">Sair</a>
+        <form action="/logout" method="POST" class="form-sair">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="botao-sair">Sair</button>
+        </form>
 
     </header>
 

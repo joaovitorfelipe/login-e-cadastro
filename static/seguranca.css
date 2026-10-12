@@ -259,3 +259,36 @@ button:hover {
 .voltar:hover {
     color: white;
 }
+
+
+/* BOTÃO SAIR DO HEADER */
+
+header .form-sair {
+    display: block;
+    flex-direction: initial;
+}
+
+header .botao-sair {
+    width: auto;
+    padding: 10px 18px;
+    margin: 0;
+
+    color: white;
+    background: #1d1d1d;
+
+    border: 1px solid #333;
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+header .botao-sair:hover {
+    background: #b91c1c;
+    border-color: #ef4444;
+    color: white;
+}

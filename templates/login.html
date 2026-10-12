@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 
 <body>
@@ -14,9 +14,9 @@
     <div class="container">
 
         <h1>Login</h1>
-        
+
         {% if erro %}
-            <p class="erro">{{ erro }}</p>
+        <p class="erro">{{ erro }}</p>
         {% endif %}
 
         <form method="POST">
@@ -33,11 +33,16 @@
         </form>
 
         <p>
-            Não tem uma conta?
+            <a href="{{ url_for('recuperar_senha') }}">Esqueci minha senha</a>
+        </P>
+
+        <p>
+            Não possui uma conta?
             <a href="/cadastro">Cadastre-se</a>
         </p>
 
     </div>
 
 </body>
+
 </html>

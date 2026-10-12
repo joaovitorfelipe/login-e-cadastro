@@ -16,7 +16,10 @@
 
         <h2>Meu Sistema</h2>
 
-        <a href="/logout">Sair</a>
+        <form action="/logout" method="POST" class="form-sair">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="botao-sair">Sair</button>
+        </form>
 
     </header>
 
@@ -71,22 +74,16 @@
                     Novo nome
                 </label>
 
-                <input
-                    type="text"
-                    id="novo_nome"
-                    name="novo_nome"
-                    placeholder="Digite seu novo nome"
-                    required
-                >
+                <input type="text" id="novo_nome" name="novo_nome" placeholder="Digite seu novo nome" required>
 
 
                 {% if erro %}
-                    <p class="erro">{{ erro }}</p>
+                <p class="erro">{{ erro }}</p>
                 {% endif %}
 
 
                 {% if sucesso %}
-                    <p class="sucesso">{{ sucesso }}</p>
+                <p class="sucesso">{{ sucesso }}</p>
                 {% endif %}
 
 

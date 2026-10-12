@@ -16,7 +16,11 @@
 
         <h2>Meu Sistema</h2>
 
-        <a href="/logout">Sair</a>
+
+        <form action="/logout" method="POST" class="form-sair">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="botao-sair">Sair</button>
+        </form>
 
     </header>
 
@@ -24,7 +28,7 @@
     <main>
 
         <section class="titulo">
-             
+
             <a href="/configuracoes" class="voltar">← Voltar</a>
             <h1>Segurança</h1>
 
@@ -53,45 +57,30 @@
                     Senha atual
                 </label>
 
-                <input
-                    type="password"
-                    id="senha_atual"
-                    name="senha_atual"
-                    required
-                >
+                <input type="password" id="senha_atual" name="senha_atual" required>
 
 
                 <label for="nova_senha">
                     Nova senha
                 </label>
 
-                <input
-                    type="password"
-                    id="nova_senha"
-                    name="nova_senha"
-                    required
-                >
+                <input type="password" id="nova_senha" name="nova_senha" required>
 
 
                 <label for="confirmar_senha">
                     Confirmar nova senha
                 </label>
 
-                <input
-                    type="password"
-                    id="confirmar_senha"
-                    name="confirmar_senha"
-                    required
-                >
+                <input type="password" id="confirmar_senha" name="confirmar_senha" required>
 
 
                 {% if erro %}
-                    <p class="erro">{{ erro }}</p>
+                <p class="erro">{{ erro }}</p>
                 {% endif %}
 
 
                 {% if sucesso %}
-                    <p class="sucesso">{{ sucesso }}</p>
+                <p class="sucesso">{{ sucesso }}</p>
                 {% endif %}
 
 
